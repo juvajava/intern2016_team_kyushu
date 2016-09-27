@@ -13,6 +13,7 @@ function DataManager() {
          * フィルター関数の作成を行う関数群
          */
         function makeEqFilter(key) {
+            console.log("Eq");
             var cond_value = cond[key];
             return function (data) {
                 return data[key] === cond_value;
@@ -21,6 +22,7 @@ function DataManager() {
 
         //部分一致フィルター
         function makePmFilter(key) {
+            console.log("Pm");
             var cond_value = cond[key];
             return function (data) {
                 return data[key].match(cond_value);
@@ -28,6 +30,7 @@ function DataManager() {
         }
 
         function makeLeFilter(key) {
+            console.log("Le");
             var cond_value = cond[key];
             var data_key = key.slice(0, -3);
             return function (data) {
@@ -36,6 +39,7 @@ function DataManager() {
         }
 
         function makeGeFilter(key) {
+            console.log("Ge");
             var cond_value = cond[key];
             var data_key = key.slice(0, -5);
             return function (data) {
@@ -46,6 +50,7 @@ function DataManager() {
 
 
         function makeInFilter(key) {
+            console.log("In");
             var cond_value = cond[key];
             var data_key = key.slice(0, -3);
             return function (data) {
