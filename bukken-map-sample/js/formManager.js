@@ -30,7 +30,7 @@ function FormManager() {
         chinryo_from,
         chinryo_to,
         madori,
-        kotsu_ekitoho_1,
+        ekitoho,
     ];
 
     var clicked = false;
