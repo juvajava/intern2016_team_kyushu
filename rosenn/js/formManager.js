@@ -1,22 +1,58 @@
 function FormManager() {
     //================== コンストラクタ ==================//
     var searchButton = document.getElementById('search-button');
-    searchButton.onclick = function() {
+    searchButton.onclick = function () {
         clicked = true;
     }
 
-    var chikunensu = new FormPulldowm('chikunensu',
-        [
-            {'text': '', 'cond': {}},
-            {'text': '新築（築1年以内）', 'cond': {'chikunensu.to': 1}},
-            {'text': '3年以内', 'cond': {'chikunensu.to': 3}},
-            {'text': '5年以内', 'cond': {'chikunensu.to': 5}},
-            {'text': '10年以内', 'cond': {'chikunensu.to': 10}},
-            {'text': '15年以内', 'cond': {'chikunensu.to': 15}},
-            {'text': '20年以内', 'cond': {'chikunensu.to': 20}},
-            {'text': '30年以内', 'cond': {'chikunensu.to': 30}},
-        ]
-    );
+    var chikunensu = new FormPulldowm('chikunensu', [
+        {
+            'text': '',
+            'cond': {}
+        },
+        {
+            'text': '新築（築1年以内）',
+            'cond': {
+                'chikunensu.to': 1
+            }
+        },
+        {
+            'text': '3年以内',
+            'cond': {
+                'chikunensu.to': 3
+            }
+        },
+        {
+            'text': '5年以内',
+            'cond': {
+                'chikunensu.to': 5
+            }
+        },
+        {
+            'text': '10年以内',
+            'cond': {
+                'chikunensu.to': 10
+            }
+        },
+        {
+            'text': '15年以内',
+            'cond': {
+                'chikunensu.to': 15
+            }
+        },
+        {
+            'text': '20年以内',
+            'cond': {
+                'chikunensu.to': 20
+            }
+        },
+        {
+            'text': '30年以内',
+            'cond': {
+                'chikunensu.to': 30
+            }
+        },
+        ]);
     var sikikin = new FormCheckboxChecked('shikikin', 'shikikin');
     var reikin = new FormCheckboxChecked('reikin', 'reikin');
     var chinryo_from = new FormTextNumber('chinryo_from', 'chinryo.from');
@@ -34,11 +70,11 @@ function FormManager() {
     var clicked = false;
 
     //===================== メソッド =====================//
-    this.isClicked = function() {
+    this.isClicked = function () {
         return clicked;
     }
 
-    this.getCond = function() {
+    this.getCond = function () {
         clicked = false;
         var cond = {};
         for (var form of forms) {
@@ -56,7 +92,7 @@ function FormCheckboxChecked(elemId, columnName) {
     var element = document.getElementById(elemId);
 
     //===================== メソッド =====================//
-    this.getCond = function() {
+    this.getCond = function () {
         var cond = {};
         if (element.checked) {
             cond[columnName] = 0;
@@ -70,7 +106,7 @@ function FormCheckboxList(elemName, columnName) {
     var elements = document.getElementsByName(elemName);
 
     //===================== メソッド =====================//
-    this.getCond = function() {
+    this.getCond = function () {
         var values = [];
         for (var elem of elements) {
             if (elem.checked) {
@@ -98,7 +134,7 @@ function FormTextNumber(elemId, columnName) {
     }
 
     //===================== メソッド =====================//
-    this.getCond = function() {
+    this.getCond = function () {
         var cond = {};
         if (isValid()) {
             cond[columnName] = parseInt(element.value);
@@ -122,7 +158,7 @@ function FormPulldowm(elemId, optionList) {
     element.innerHTML = innerHTML;
 
     //===================== メソッド =====================//
-    this.getCond = function() {
+    this.getCond = function () {
         var selected = element.selectedIndex;
         return conds[selected];
     }
