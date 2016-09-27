@@ -22,7 +22,7 @@ function FormManager() {
     var chinryo_from = new FormTextNumber('chinryo_from', 'chinryo.from');
     var chinryo_to = new FormTextNumber('chinryo_to', 'chinryo.to');
     var madori = new FormCheckboxList('madori', 'madori');
-    var ekitoho = new FormChechboxList('kotsu_ekitoho_1','ekitoho.to');
+    var ekitoho = new FormCheckboxList('kotsu_ekitoho_1','ekitoho.to');
     var forms = [
         chikunensu,
         sikikin,
