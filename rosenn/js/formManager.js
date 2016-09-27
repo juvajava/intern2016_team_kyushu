@@ -4,6 +4,26 @@ function FormManager() {
     searchButton.onclick = function () {
         clicked = true;
     }
+    
+    var rosen1 = new FormPulldowm('rosen1',//Html上の名前
+        [
+            {'text': '路線名を選択して下さい', 'cond': {}},
+            {'text': '銀座線', 'cond': {'rosen1.pm': '銀座線'}},
+            {'text': '丸ノ内線', 'cond': {'rosen1.pm': '丸ノ内線'}},
+            {'text': '日比谷線', 'cond': {'rosen1.pm': '日比谷線'}},
+            {'text': '東西線', 'cond': {'rosen1.pm': '東西線'}},
+            {'text': '千代田線', 'cond': {'rosen1.pm': '千代田線'}},
+            {'text': '有楽町線', 'cond': {'rosen1.pm': '有楽町線'}},
+            {'text': '半蔵門線', 'cond': {'rosen1.pm': '半蔵門線'}},
+            {'text': '南北線', 'cond': {'rosen1.pm': '南北線'}},
+            {'text': '副都心線', 'cond': {'rosen1.pm': '副都心線'}},
+            {'text': '都営浅草線', 'cond': {'rosen1.pm': '都営浅草線'}},
+            {'text': '都営三田線', 'cond': {'rosen1.pm': '都営三田線'}},
+            {'text': '都営新宿線', 'cond': {'rosen1.pm': '都営新宿線'}},
+            {'text': '都営大江戸線', 'cond': {'rosen1.pm': '都営大江戸線'}},
+            {'text': 'JR山手線', 'cond': {'rosen1.pm': 'JR山手線'}},
+        ]
+    );
 
     var chikunensu = new FormPulldowm('chikunensu', [
         {
