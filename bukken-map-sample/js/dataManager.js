@@ -14,28 +14,31 @@ function DataManager() {
          */
         function makeEqFilter(key) {
             var cond_value = cond[key];
-            return function(data) {
+            return function (data) {
                 return data[key] === cond_value;
             }
         }
+
         function makeLeFilter(key) {
             var cond_value = cond[key];
             var data_key = key.slice(0, -3);
-            return function(data) {
+            return function (data) {
                 return data[data_key] <= cond_value;
             }
         }
+
         function makeGeFilter(key) {
             var cond_value = cond[key];
             var data_key = key.slice(0, -5);
-            return function(data) {
+            return function (data) {
                 return data[data_key] >= cond_value;
             }
         }
+
         function makeInFilter(key) {
             var cond_value = cond[key];
             var data_key = key.slice(0, -3);
-            return function(data) {
+            return function (data) {
                 return cond_value.includes(data[data_key]);
             }
         }
@@ -65,11 +68,11 @@ function DataManager() {
     }
 
     //===================== メソッド =====================//
-    this.search = function(cond) {
+    this.search = function (cond) {
         var dataList = loader.getDataList();
         var filters = makeFilters(cond);
-        return dataList.filter(function(data) {
-            return filters.every(function(e, i, a) {
+        return dataList.filter(function (data) {
+            return filters.every(function (e, i, a) {
                 return e(data);
             });
         })
@@ -92,11 +95,11 @@ function BukkenDataLoader() {
     function load() {
         for (var i = 0; i < 10; i++) {
             $.get('http://192.168.10.2/chinshaku_' + ('00' + i).slice(-3) + '_.json',
-                  function(items) {
-                      for (var rawData of items) {
-                          bukkenDataList.push(modifyChinshaku(rawData));
-                      }
-                  }
+                function (items) {
+                    for (var rawData of items) {
+                        bukkenDataList.push(modifyChinshaku(rawData));
+                    }
+                }
             )
         }
     }
@@ -119,15 +122,21 @@ function BukkenDataLoader() {
         data.chinryo = rawData.chinshaku_boshu_joken_view.chinryo;
         data.shikikin = rawData.chinshaku_boshu_joken_view.shikikin_en;
         data.reikin = rawData.chinshaku_boshu_joken_view.reikin_en;
+
         // 築年数
         if (rawData.shunko_datejun) {
             shunko_date = parseDatejun(rawData.shunko_datejun);
             var now = new Date();
             // 近似的に年数を計算。うるう年があるとずれる
-            data.chikunensu = Math.floor((now - shunko_date) / (1000*60*60*24*365));
+            data.chikunensu = Math.floor((now - shunko_date) / (1000 * 60 * 60 * 24 * 365));
         }
+
         // 間取り。like 1K、1R、2LDK
         data.madori = rawData.madori_name;
+
+        // 駅徒歩。like 1分、5分、10分
+        data.ekitoho = rawData.kotsu_ekitoho_1;
+
         return data;
     }
 
@@ -137,7 +146,7 @@ function BukkenDataLoader() {
     function parseDatejun(datejun) {
         var jun = datejun % 10;
         var day = datejun / 10 % 100;
-        var month = datejun /1000 % 100;
+        var month = datejun / 1000 % 100;
         var year = datejun / 100000;
         // 近似的に上旬→1日、中旬→11日、下旬→21日
         if (day === 0) {
@@ -150,11 +159,11 @@ function BukkenDataLoader() {
             }
         }
         // JSでは1月=0、2月=1、・・・、12月=11
-        return new Date(year, month-1, day);
+        return new Date(year, month - 1, day);
     }
 
     //===================== メソッド =====================//
-    this.getDataList = function() {
+    this.getDataList = function () {
         return bukkenDataList;
     }
 }
