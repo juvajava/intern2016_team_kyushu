@@ -24,8 +24,14 @@ function DataManager() {
         function makePmFilter(key) {
             console.log("Pm");
             var cond_value = cond[key];
+            var data_key = key.slice(0, -3);
             return function (data) {
-                return data[key].match(cond_value);
+                console.log(key);
+                console.log(data_key);
+                console.log(data[data_key]);
+                console.log(cond_value);
+                console.log(data[1]);
+                return data[data_key].match(cond_value);
             }
         }
 
@@ -87,8 +93,8 @@ function DataManager() {
 
     //===================== メソッド =====================//
     this.search = function (cond) {
-        var dataList = loader.getDataList();
-        var filters = makeFilters(cond);
+        var dataList = loader.getDataList(); //物件データ
+        var filters = makeFilters(cond); //フォームの情報をフィルターに渡す
         return dataList.filter(function (data) {
             return filters.every(function (e, i, a) {
                 return e(data);

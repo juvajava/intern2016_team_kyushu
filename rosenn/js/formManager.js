@@ -85,6 +85,7 @@ function FormManager() {
         chinryo_from,
         chinryo_to,
         madori,
+        rosen1,
     ];
 
     var clicked = false;
