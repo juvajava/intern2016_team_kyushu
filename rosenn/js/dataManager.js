@@ -93,10 +93,11 @@ function DataManager() {
         
         function rosen_search(data,array){
             
-            console.log(array.length);
+            var data_cut = ensen_eki_cut(data);
+            
             for (var i = 0; i < array.length; i++) {
                 //console.log(i);
-                    if (data.indexOf(array[i]) != -1) {
+                    if (data_cut.indexOf(array[i]) != -1) {
                         //console.log("data" + data);
                         //console.log("array" + array[i]);
                         return true;
@@ -107,6 +108,12 @@ function DataManager() {
                     }
                 }
             return false;
+        }
+        
+        function ensen_eki_cut(eki_info){
+            var index = eki_info.indexOf("線");
+            var str = eki_info.slice(index+1);
+            return str;
         }
 
         function makeLeFilter(key) {
@@ -200,8 +207,6 @@ function BukkenDataLoader() {
                 }
             )
         }
-        console.log("test");
-        console.log(bukkenDataList);
     }
 
     /**
