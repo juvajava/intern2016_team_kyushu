@@ -133,10 +133,25 @@ function DataManager() {
         
         // 物件データから沿線名,駅名を分離する関数
         function ensen_eki_cut(eki_info){
-            var index = eki_info.indexOf("線");
-            var str = eki_info.slice(index+2);
-            //console.log(str);
-            return str;
+            
+            var ekimei;
+            
+            if ( eki_info.indexOf("各停") != -1 ){
+                ekimei = eki_info.slice( eki_info.indexOf("各停") + 3 );
+            } else if ( eki_info.indexOf("快速") != -1 ){
+                 ekimei = eki_info.slice( eki_info.indexOf("快速") + 3 ); 
+            
+                
+            } else if ( eki_info.indexOf("線") != -1){
+                ekimei = eki_info.slice( eki_info.indexOf("線") + 2 ); 
+            } else {
+                ekimei = eki_info;
+            }
+            
+            console.log(ekimei);
+            
+            return ekimei;
+            
         }
 
         function makeLeFilter(key) {
