@@ -25,13 +25,31 @@ function DataManager() {
             console.log("Pm");
             var cond_value = cond[key];
             var data_key = key.slice(0, -3);
+
             return function (data) {
+
                 console.log(key);
                 console.log(data_key);
                 console.log(data[data_key]);
                 console.log(cond_value);
                 console.log(data);
-                return data[data_key].match(cond_value);
+                console.log(GINZA[1]);
+
+                if (data[data_key] == null) {
+                    console.log("null");
+                    return false;
+                }
+                for (var i = 0; i < GINZA.length; i++) {
+                    if (data[data_key].indexOf(GINZA[i]) != -1) {
+                        //console.log(data[data_key]);
+                        return true;
+                    } else {
+                        //console.log(data[data_key]);
+                        return false;
+                    }
+                }
+
+                //return data[data_key].match(cond_value);
             }
         }
 
