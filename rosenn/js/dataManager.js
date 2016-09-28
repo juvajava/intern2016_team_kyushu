@@ -39,8 +39,61 @@ function DataManager() {
                     console.log("null");
                     return false;
                 }
-                for (var i = 0; i < MARUNOUCHI.length; i++) {
-                    if (data[data_key].indexOf(MARUNOUCHI[i]) != -1) {
+                
+                switch(cond_value){
+                    case 28001://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 28002://
+                        return rosen_search(data[data_key],MARUNOUCHI);
+                        break;
+                    case 28003://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 28004://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 28005://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 28006://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 28007://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 28009://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 28010://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 99302://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 99303://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 99304://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 99301://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                    case 11302://
+                        return rosen_search(data[data_key],GINZA);
+                        break;
+                }
+                
+
+                //return data[data_key].match(cond_value);
+            }
+        }
+        
+        function rosen_search(data,array){
+            
+            for (var i = 0; i < array.length; i++) {
+                    if (data.indexOf(array[i]) != -1) {
                         //console.log(data[data_key]);
                         return true;
                     } else {
@@ -48,9 +101,6 @@ function DataManager() {
                         return false;
                     }
                 }
-
-                //return data[data_key].match(cond_value);
-            }
         }
 
         function makeLeFilter(key) {
