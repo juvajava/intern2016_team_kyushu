@@ -30,7 +30,7 @@ function DataManager() {
                 console.log(data_key);
                 console.log(data[data_key]);
                 console.log(cond_value);
-                console.log(data[1]);
+                console.log(data);
                 return data[data_key].match(cond_value);
             }
         }
@@ -126,6 +126,8 @@ function BukkenDataLoader() {
                 }
             )
         }
+        console.log("test");
+        console.log(bukkenDataList);
     }
 
     /**
@@ -157,7 +159,9 @@ function BukkenDataLoader() {
         data.madori = rawData.madori_name;
 
         // 最寄駅。
-        data.kotsu_ensen_eki = rawData.kotsu_ensen_eki_1;
+        data.rosen1 = rawData.kotsu_ensen_eki_1;
+
+        //console.log(data);
 
         return data;
     }
