@@ -20,73 +20,68 @@ function DataManager() {
             }
         }
 
-        //部分一致フィルター
-        function makePmFilter(key) {
+        //路線（部分一致）フィルター
+        function makePmFilter(key,rosen_num_1,rosen_num_2) {
             console.log("Pm");
+            //console.log(key);
+            //console.log(rosen_num);
             var cond_value = cond[key];
-            var data_key = key.slice(0, -3);
-
+            //var data_key = key.slice(0, -3);
+            var data_key_1 = rosen_num_1;
+            var data_key_2 = rosen_num_2;
             return function (data) {
 
-                //console.log(key);
-                //console.log(data_key);
-                //console.log(data[data_key]);
-                //console.log(cond_value);
-                //console.log(data);
-                //console.log(GINZA[1]);
-
-                if (data[data_key] == null) {
+                if (data[data_key_1] == null) {
                     console.log("null");
                     return false;
                 }
                 
+                
                 switch(cond_value){
                     case 28001://
-                        return rosen_search(data[data_key],GINZA);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],GINZA);
                         break;
                     case 28002://
-                        return rosen_search(data[data_key],MARUNOUCHI);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],MARUNOUCHI);
                         break;
                     case 28003://
-                        return rosen_search(data[data_key],HIBIYA);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],HIBIYA);
                         break;
                     case 28004://
-                        return rosen_search(data[data_key],TOUZAI);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],TOUZAI);
                         break;
                     case 28005://
-                        return rosen_search(data[data_key],CHIYODA);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],CHIYODA);
                         break;
                     case 28006://
-                        return rosen_search(data[data_key],YURAKU);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],YURAKU);
                         break;
                     case 28007://
-                        return rosen_search(data[data_key],HANZOU);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],HANZO);
                         break;
                     case 28009://
-                        return rosen_search(data[data_key],NANBOKU);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],NANBOKU);
                         break;
                     case 28010://
-                        return rosen_search(data[data_key],HUKUTOSHIN);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],HUKUTOSHIN);
                         break;
                     case 99302://
-                        return rosen_search(data[data_key],T_ASAKUSA);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],T_ASAKUSA);
                         break;
                     case 99303://
-                        return rosen_search(data[data_key],T_MITA);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],T_MITA);
                         break;
                     case 99304://
-                        return rosen_search(data[data_key],T_SHINJUKU);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],T_SHINJUKU);
                         break;
                     case 99301://
-                        return rosen_search(data[data_key],T_OEDO);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],T_OEDO);
                         break;
                     case 11302://
-                        //console.log("yamanote");
-                        return rosen_search(data[data_key],JR_YAMANOTE);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],HANZO);
                         break;
                     case 101://
-                        //console.log("yamanote");
-                        return rosen_search(data[data_key],JR_TYUOH);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],JR_TYUOH);
                         break;
                 }
                 
@@ -95,6 +90,7 @@ function DataManager() {
             }
         }
         
+        // 路線判定関数（駅一つ）
         function rosen_search(data,array){
             
             var data_cut = ensen_eki_cut(data);
@@ -114,10 +110,32 @@ function DataManager() {
             return false;
         }
         
+        
+        // 路線判定関数（複数）
+        function multi_serch_rosen(data_1,data_2,ROSEN){
+            
+            if ( rosen_search(data_1,ROSEN) == true ){
+                return true;
+            } else {
+                if ( data_2 == null ){
+                    return false;
+                }
+                
+                
+                if (rosen_search(data_2,ROSEN) == true ){
+                    console.log(count_rosen_su += 1);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        
         // 物件データから沿線名,駅名を分離する関数
         function ensen_eki_cut(eki_info){
             var index = eki_info.indexOf("線");
-            var str = eki_info.slice(index+1);
+            var str = eki_info.slice(index+2);
+            //console.log(str);
             return str;
         }
 
@@ -173,7 +191,8 @@ function DataManager() {
             } else if (key.slice(-3) === '.in') {
                 filters.push(makeInFilter(key));
             } else if (key.slice(-3) === '.pm') { // 部分一致フィルター
-                filters.push(makePmFilter(key));
+                filters.push(makePmFilter(key,'rosen1','rosen2'));
+                //filters.push(makePmFilter(key,'rosen2'));
             } else {
                 filters.push(makeEqFilter(key));
             }
@@ -248,6 +267,7 @@ function BukkenDataLoader() {
 
         // 最寄駅。
         data.rosen1 = rawData.kotsu_ensen_eki_1;
+        data.rosen2 = rawData.kotsu_ensen_eki_2;
         
         data.ekitoho = rawData.kotsu_ekitoho_1;
 
