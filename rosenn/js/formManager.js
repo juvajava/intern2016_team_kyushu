@@ -24,6 +24,18 @@ function FormManager() {
             {'text': 'JR山手線', 'cond': {'rosen1.pm': 11302}},
         ]
     );
+    
+    // 駅徒歩検索
+    var ekitoho = new FormPulldowm('ekitoho',
+        [
+            {'text': '時間を指定して下さい', 'cond': {}},
+            {'text': '1分以内', 'cond': {'ekitoho.to': 1}},
+            {'text': '3分以内', 'cond': {'ekitoho.to': 3}},
+            {'text': '5分以内', 'cond': {'ekitoho.to': 5}},
+            {'text': '10分以内', 'cond': {'ekitoho.to': 10}},
+            {'text': '15分以内', 'cond': {'ekitoho.to': 15}},
+        ]
+    );
 
     var chikunensu = new FormPulldowm('chikunensu',
         [
@@ -50,6 +62,7 @@ function FormManager() {
         chinryo_to,
         madori,
         rosen1,
+        ekitoho,
     ];
 
     var clicked = false;
