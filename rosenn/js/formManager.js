@@ -22,6 +22,7 @@ function FormManager() {
             {'text': '都営新宿線', 'cond': {'rosen1.pm': 99304}},
             {'text': '都営大江戸線', 'cond': {'rosen1.pm': 99301}},
             {'text': 'JR山手線', 'cond': {'rosen1.pm': 11302}},
+            {'text': 'JR中央本線', 'cond': {'rosen1.pm': 101}},
         ]
     );
     

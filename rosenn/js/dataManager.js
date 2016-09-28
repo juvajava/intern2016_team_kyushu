@@ -84,6 +84,10 @@ function DataManager() {
                         //console.log("yamanote");
                         return rosen_search(data[data_key],JR_YAMANOTE);
                         break;
+                    case 101://
+                        //console.log("yamanote");
+                        return rosen_search(data[data_key],JR_TYUOH);
+                        break;
                 }
                 
 
