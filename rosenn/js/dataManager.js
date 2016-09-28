@@ -28,19 +28,19 @@ function DataManager() {
 
             return function (data) {
 
-                console.log(key);
-                console.log(data_key);
-                console.log(data[data_key]);
-                console.log(cond_value);
-                console.log(data);
-                console.log(GINZA[1]);
+                //console.log(key);
+                //console.log(data_key);
+                //console.log(data[data_key]);
+                //console.log(cond_value);
+                //console.log(data);
+                //console.log(GINZA[1]);
 
                 if (data[data_key] == null) {
                     console.log("null");
                     return false;
                 }
-                for (var i = 0; i < GINZA.length; i++) {
-                    if (data[data_key].indexOf(GINZA[i]) != -1) {
+                for (var i = 0; i < MARUNOUCHI.length; i++) {
+                    if (data[data_key].indexOf(MARUNOUCHI[i]) != -1) {
                         //console.log(data[data_key]);
                         return true;
                     } else {
