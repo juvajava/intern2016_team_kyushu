@@ -110,6 +110,7 @@ function DataManager() {
             return false;
         }
         
+        // 物件データから沿線名,駅名を分離する関数
         function ensen_eki_cut(eki_info){
             var index = eki_info.indexOf("線");
             var str = eki_info.slice(index+1);
@@ -121,7 +122,11 @@ function DataManager() {
             var cond_value = cond[key];
             var data_key = key.slice(0, -3);
             return function (data) {
-                return data[data_key] <= cond_value;
+                if (data[data_key] == null){
+                    return false;
+                }else{
+                    return data[data_key] <= cond_value;
+                }
             }
         }
 
@@ -239,6 +244,8 @@ function BukkenDataLoader() {
 
         // 最寄駅。
         data.rosen1 = rawData.kotsu_ensen_eki_1;
+        
+        data.ekitoho = rawData.kotsu_ekitoho_1;
 
         //console.log(data);
 
