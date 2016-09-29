@@ -250,6 +250,7 @@ function DataManager() {
                 filters.push(makeEqFilter(key));
             }
         }
+        return filters;
     }
 
     //===================== メソッド =====================//
