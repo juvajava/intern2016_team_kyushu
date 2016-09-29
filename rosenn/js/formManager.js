@@ -30,11 +30,11 @@ function FormManager() {
     var ekitoho = new FormPulldowm('ekitoho',
         [
             {'text': '時間を指定して下さい', 'cond': {}},
-            {'text': '1分以内', 'cond': {'ekitoho.to': 1}},
-            {'text': '3分以内', 'cond': {'ekitoho.to': 3}},
-            {'text': '5分以内', 'cond': {'ekitoho.to': 5}},
-            {'text': '10分以内', 'cond': {'ekitoho.to': 10}},
-            {'text': '15分以内', 'cond': {'ekitoho.to': 15}},
+            {'text': '1分以内', 'cond': {'ekitoho.et': 1}},
+            {'text': '3分以内', 'cond': {'ekitoho.et': 3}},
+            {'text': '5分以内', 'cond': {'ekitoho.et': 5}},
+            {'text': '10分以内', 'cond': {'ekitoho.et': 10}},
+            {'text': '15分以内', 'cond': {'ekitoho.et': 15}},
         ]
     );
 
