@@ -15,3 +15,35 @@ var JR_YAMANOTE = ["大崎","五反田","目黒","恵比寿","渋谷","原宿","
 var JR_TYUOH = ["東京", "神田", "御茶ノ水", "水道橋", "飯田橋", "市ケ谷", "四ツ谷", "信濃町", "千駄ケ谷", "代々木", "新宿", "大久保", "東中野", "中野", "高円寺", "阿佐ヶ谷", "荻窪", "西荻窪", "吉祥寺", "三鷹", "武蔵境", "東小金井", "武蔵小金井", "国分寺", "西国分寺", "国立", "立川", "日野", "豊田", "八王子"];//101
 
 count_rosen_su = 0;
+//search_count = 0;
+
+function set2fig(num) {
+   // 桁数が1桁だったら先頭に0を加えて2桁に調整する
+   var ret;
+   if( num < 10 ) { ret = "0" + num; }
+   else { ret = num; }
+   return ret;
+}
+function showClock() {
+   var nowTime = new Date();
+   var nowHour = set2fig( nowTime.getHours() );
+   var nowMin = set2fig( nowTime.getMinutes() );
+   var nowSec = set2fig( nowTime.getSeconds() );
+   var msg = "現在時刻は、" + nowHour + ":" + nowMin + ":" + nowSec + " です。";
+   document.getElementById("RealtimeClockArea").innerHTML = msg;
+}
+setInterval('showClock()',1000);
+
+function showSearch_num() {
+    if(search_count > 0)
+    {
+        var search_result = "検索「" + search_count + "」件";
+    }
+    else
+    {
+        var search_result = "検索して下さい。";
+    }
+   
+   document.getElementById("search_num").innerHTML = search_result;
+}
+setInterval('showSearch_num()',1000);

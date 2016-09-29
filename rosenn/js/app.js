@@ -14,6 +14,7 @@ function App() {
     });
 
     // 各インスタンスを作成
+    //var rosen_eki = new rosen_eki();
     var dataManager = new DataManager();
     var formManager = new FormManager();
     var bukkenViewManager = new BukkenViewManager(map);
@@ -29,15 +30,21 @@ function App() {
     this.watchButtonClicked = function() {
         // 検索ボタンが押されていなければ何もしない
         if (!formManager.isClicked()) return;
-
+        search_count = 0;
         // 入力されている検索条件を取得
         var cond = formManager.getCond();
 
         // 検索条件に合致する物件のリストを取得
         var bukkenInfoList = dataManager.search(cond);
+        //物件数取得
+        search_count = bukkenInfoList.length;
 
         // 物件リストの各物件のピンを地図上に立てる
         bukkenViewManager.update(bukkenInfoList);
+        
+        //検索件数の表示
+        //$("#total").html(Math.ceil(count_rosen_su));
+
     }
 }
 
