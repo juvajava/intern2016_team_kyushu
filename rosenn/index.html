@@ -9,20 +9,22 @@
 </head>
 
 <body>
+    <h1 id="site_title"> お部屋探し</h1>
+
     <div class="content-box">
         <div class="search-bar">
             <div class="search-item">
-               <p id="RealtimeClockArea">※ここに時計が表示されます。</p>
+                <p id="RealtimeClockArea">※ここに時計が表示されます。</p>
                 <div class="list-left">路線名</div>
-                <select id="rosen1" class="list-input"></select>
+                <select id="rosen1" class="list-input-1"></select>
             </div>
             <div class="search-item">
                 <div class="list-left">駅徒歩</div>
-                <select id="ekitoho" class="list-input"></select>
+                <select id="ekitoho" class="list-input-1"></select>
             </div>
             <div class="search-item">
                 <div class="list-left">築年数</div>
-                <select id="chikunensu" class="list-input"></select>
+                <select id="chikunensu" class="list-input-1"></select>
             </div>
             <div class="search-item">
                 <div class="list-left">家賃下限</div>
@@ -106,16 +108,24 @@
                 <div class="list-left"></div>
                 <button id="search-button">検索</button>
             </div>
-            <p id="search_num">少々お待ち下さい</p>
+            <!--<p id="search_num">少々お待ち下さい</p> -->
         </div>
         <div id="map-canvas" class="map-embed">
 
         </div>
         <div class="content-bar">
-            <div id="bukken" class="tatemono">
+            <div id = "search_result">
+             <p class = "result_word">検索件数結果</p> 
+             <p id="search_num"></p>
             </div>
+            <!-- <p id="search_num">検索結果</p> -->
+            <div id="bukken" class="tatemono"></div>
         </div>
     </div>
+
+    <footer id="footer">
+        <span>&copy;hironari iwata</span>
+    </footer>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf8MOuQbm82v-ykYavmr8Wh92EXl_B4bs&libraries=visualization"></script>
     <script src="./js/formManager.js"></script>

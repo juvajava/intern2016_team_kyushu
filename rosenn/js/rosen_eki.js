@@ -37,7 +37,7 @@ setInterval('showClock()',1000);
 function showSearch_num() {
     if(search_count > 0)
     {
-        var search_result = "検索「" + search_count + "」件";
+        var search_result = search_count + " 件";
     }
     else
     {
