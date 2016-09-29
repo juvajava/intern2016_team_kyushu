@@ -90,14 +90,27 @@ function DataManager() {
             }
         }
         
-        // 路線判定関数（駅一つ）
-        function rosen_search(data,array){
+        // 路線判定関数（駅名完全一致）
+        function rosen_search(ekimei_data,eki_list){
             
-            var data_cut = ensen_eki_cut(data);
+            var ekimei = ensen_eki_cut(ekimei_data);
             
-            for (var i = 0; i < array.length; i++) {
+            for (var i = 0; i < eki_list.length; i++) {
+                
+                //console.log("駅名 = " + ekimei);
+                //console.log("駅リスト = " + eki_list[i]);
+                
+                if ( ekimei == eki_list[i] ) {
+                    //console.log("true");
+                    return true;
+                } else {
+                    //console.log("false");
+                }
+            }
+            
+            /*  部分一致版
                 //console.log(i);
-                    if (data_cut.indexOf(array[i]) != -1) {
+                    if (ekimei.indexOf(eki_list[i]) != -1) {
                         //console.log("data" + data);
                         //console.log("array" + array[i]);
                         return true;
@@ -107,6 +120,8 @@ function DataManager() {
                         //return false;
                     }
                 }
+            */
+            
             return false;
         }
         
@@ -150,7 +165,7 @@ function DataManager() {
             
             //console.log(ekimei);
             
-            return ekimei;
+            return ekimei.slice(0,-1);
             
         }
 
@@ -233,7 +248,7 @@ function DataManager() {
                 filters.push(makeEqFilter(key));
             }
         }
-        return filters;
+        console.log(filters);
     }
 
     //===================== メソッド =====================//
