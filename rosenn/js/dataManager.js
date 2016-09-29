@@ -148,7 +148,7 @@ function DataManager() {
                 ekimei = eki_info;
             }
             
-            console.log(ekimei);
+            //console.log(ekimei);
             
             return ekimei;
             
@@ -166,6 +166,26 @@ function DataManager() {
                 }
             }
         }
+        
+        // MultiLeFilter
+        function makeMultiLeFilter(key,data1,data2) {
+            console.log("MulLe");
+            var cond_value = cond[key];
+            
+            return function (data) {
+                if (data[data1] == null){
+                    return false;
+                }
+                
+                if ( data[data1] <= cond_value ){
+                    return true;
+                } else if ( data[data2] <= cond_value ) {
+                    return true;
+                } else {
+                    return false;
+                } 
+            } 
+        }
 
         function makeGeFilter(key) {
             console.log("Ge");
@@ -175,7 +195,6 @@ function DataManager() {
                 return data[data_key] >= cond_value;
             }
         }
-
 
 
         function makeInFilter(key) {
@@ -201,6 +220,8 @@ function DataManager() {
             if (cond[key] == null) continue;
             if (key.slice(-3) === '.to') {
                 filters.push(makeLeFilter(key));
+            } else if (key.slice(-3) === '.et') {      // 駅徒歩用
+                filters.push(makeMultiLeFilter(key,'ekitoho1','ekitoho2'));
             } else if (key.slice(-5) === '.from') {
                 filters.push(makeGeFilter(key));
             } else if (key.slice(-3) === '.in') {
@@ -284,7 +305,8 @@ function BukkenDataLoader() {
         data.rosen1 = rawData.kotsu_ensen_eki_1;
         data.rosen2 = rawData.kotsu_ensen_eki_2;
         
-        data.ekitoho = rawData.kotsu_ekitoho_1;
+        data.ekitoho1 = rawData.kotsu_ekitoho_1;
+        data.ekitoho2 = rawData.kotsu_ekitoho_2;
 
         //console.log(data);
 
