@@ -78,7 +78,7 @@ function DataManager() {
                         return multi_serch_rosen(data[data_key_1],data[data_key_2],T_OEDO);
                         break;
                     case 11302://
-                        return multi_serch_rosen(data[data_key_1],data[data_key_2],HANZO);
+                        return multi_serch_rosen(data[data_key_1],data[data_key_2],JR_YAMANOTE);
                         break;
                     case 101://
                         return multi_serch_rosen(data[data_key_1],data[data_key_2],JR_TYUOH);
@@ -130,6 +130,7 @@ function DataManager() {
         function multi_serch_rosen(data_1,data_2,ROSEN){
             
             if ( rosen_search(data_1,ROSEN) == true ){
+                //search_count++;
                 return true;
             } else {
                 if ( data_2 == null ){
@@ -139,6 +140,7 @@ function DataManager() {
                 
                 if (rosen_search(data_2,ROSEN) == true ){
                     console.log(count_rosen_su += 1);
+                    //search_count++;
                     return true;
                 } else {
                     return false;
