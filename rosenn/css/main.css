@@ -1,9 +1,20 @@
 @charset "UTF-8" ;
 
+h1.map1_text1{
+    display: block;
+    border-left: 3px solid #3D9973;
+    padding-left: 8px;
+    line-height: 1.2;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 5px;
+}
+
 .content-box{
   margin-right: auto;
   margin-left : auto;
-  height:100vh; 
+  height:50vh; 
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -38,7 +49,7 @@
   flex-basis:400px;
   */
   height:99%; 
-  min-height: 960px;
+  min-height: 500px;
 }
 
 .list-left{

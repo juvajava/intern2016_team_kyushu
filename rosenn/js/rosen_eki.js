@@ -32,7 +32,7 @@ function showClock() {
    var msg = "現在時刻は、" + nowHour + ":" + nowMin + ":" + nowSec + " です。";
    document.getElementById("RealtimeClockArea").innerHTML = msg;
 }
-setInterval('showClock()',1000);
+//setInterval('showClock()',1000);
 
 function showSearch_num() {
     if(search_count > 0)
