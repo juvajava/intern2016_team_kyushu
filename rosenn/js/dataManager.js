@@ -248,7 +248,6 @@ function DataManager() {
                 filters.push(makeEqFilter(key));
             }
         }
-        console.log(filters);
     }
 
     //===================== メソッド =====================//
