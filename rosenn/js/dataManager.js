@@ -196,6 +196,8 @@ function DataManager() {
                 
                 if ( data[data1] <= cond_value ){
                     return true;
+                } else if( data[data2] == null){
+                    return false;
                 } else if ( data[data2] <= cond_value ) {
                     return true;
                 } else {

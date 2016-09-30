@@ -7,13 +7,13 @@
  */
 function BukkenViewManager(map) {
     //================== コンストラクタ ==================//
-    var pins = [];   // ピンのオブジェクトの配列
+    var pins = []; // ピンのオブジェクトの配列
 
     //===================== メソッド =====================//
     /**
      * 物件情報のリストを受け取り、ピンを立てる。
      */
-    this.update = function(bukkenInfoList) {
+    this.update = function (bukkenInfoList) {
         // pinsの初期化
         for (var pin of pins) {
             pin.del();
@@ -32,7 +32,7 @@ function BukkenViewManager(map) {
  */
 function Pin(bukkenInfo, map) {
     //================== コンストラクタ ==================//
-    var marker = new google.maps.Marker({     // Google Map上のマーカーのオブジェクト
+    var marker = new google.maps.Marker({ // Google Map上のマーカーのオブジェクト
         map: map,
         position: new google.maps.LatLng(bukkenInfo.lat, bukkenInfo.lng)
     });
@@ -44,7 +44,7 @@ function Pin(bukkenInfo, map) {
     /**
      * マーカーの画像を設定する
      */
-    this.setIcon = function(url) {
+    this.setIcon = function (url) {
         marker.setIcon(url);
     }
 
@@ -57,7 +57,7 @@ function Pin(bukkenInfo, map) {
     }
 
     // pinを消す
-    this.del = function() {
+    this.del = function () {
         if (marker) {
             marker.setMap(null);
             delete marker;
@@ -102,6 +102,22 @@ function generateHTMLElement(bukkenInfo) {
                         <td>間取り</td>\
                         <td><#madori></td>\
                     </tr>\
+                     <tr>\
+                        <td>ekitoho1</td>\
+                        <td><#ekitoho_1></td>\
+                    </tr>\
+                    <tr>\
+                        <td>ekitoho2</td>\
+                        <td><#ekitoho_2></td>\
+                    </tr>\
+                    <tr>\
+                        <td>rosen1</td>\
+                        <td><#rosen_1></td>\
+                    </tr>\
+                    <tr>\
+                        <td>rosen2</td>\
+                        <td><#rosen_2></td>\
+                    </tr>\
                 </table>\
             </div>';
 
@@ -112,6 +128,10 @@ function generateHTMLElement(bukkenInfo) {
     innerHTML = innerHTML.replace('<#shikikin>', bukkenInfo.shikikin);
     innerHTML = innerHTML.replace('<#reikin>', bukkenInfo.reikin);
     innerHTML = innerHTML.replace('<#madori>', bukkenInfo.madori);
+    innerHTML = innerHTML.replace('<#rosen_1>', bukkenInfo.rosen1);
+    innerHTML = innerHTML.replace('<#rosen_2>', bukkenInfo.rosen2);
+    innerHTML = innerHTML.replace('<#ekitoho_1>', bukkenInfo.ekitoho1);
+    innerHTML = innerHTML.replace('<#ekitoho_2>', bukkenInfo.ekitoho2);
 
     element.innerHTML = innerHTML;
     return element;
@@ -121,7 +141,7 @@ function generateHTMLElement(bukkenInfo) {
  * 特殊な意味を持つ文字をエスケープする
  */
 function escapeText(text) {
-    return text.replace(/[&'`"<>]/g, function(match) {
+    return text.replace(/[&'`"<>]/g, function (match) {
         return {
             '&': '&amp;',
             "'": '&#x27;',

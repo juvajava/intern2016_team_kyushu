@@ -38,6 +38,8 @@ function App() {
         var bukkenInfoList = dataManager.search(cond);
         //物件数取得
         search_count = bukkenInfoList.length;
+        
+        console.log(bukkenInfoList);
 
         // 物件リストの各物件のピンを地図上に立てる
         bukkenViewManager.update(bukkenInfoList);
