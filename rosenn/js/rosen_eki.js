@@ -41,7 +41,7 @@ function showSearch_num() {
     }
     else
     {
-        var search_result = "検索して下さい。";
+        var search_result = " 0件 ";
     }
    
    document.getElementById("search_num").innerHTML = search_result;
